@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ras-server
+  profiles:
+    active: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
