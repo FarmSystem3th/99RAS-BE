@@ -14,12 +14,12 @@ public class BruteForceLoginService {
 
     private final UserRepository userRepository;
 
-    // 무차별 공격에 취약한 로그인을 구현하면 됩니다. (role 사용)
+    // 무차별 공격에 취약한 로그인을 구현하면 됩니다. (role 사용X)
     public LoginResponse vulnerableBruteForceLogin(LoginDTO loginDTO) {
         return null;
     }
 
-    // 무차별 공격을 방어하는 로그인을 구현하면 됩니다. (role 사용)
+    // 무차별 공격을 방어하는 로그인을 구현하면 됩니다. (role 사용X)
     public LoginResponse protectedBruteForceLogin(LoginDTO loginDTO) {
         return null;
     }

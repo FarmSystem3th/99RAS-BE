@@ -18,6 +18,11 @@ public class JoinService { // 신경쓰지 않아도 됩니다.
     private final UserRepository userRepository;
 
     public JoinDTO join(JoinDTO joinDTO) {
+        if (userRepository.existsByUsername(joinDTO.getUsername())) {
+            joinDTO.setUsername("이미 존재하는 아이디 입니다.");
+            joinDTO.setPassword("회원가입을 다시 시도해주세요.");
+            return joinDTO;
+        }
         User user = User.builder()
                 .username(joinDTO.getUsername())
                 .password(joinDTO.getPassword())
@@ -31,6 +36,12 @@ public class JoinService { // 신경쓰지 않아도 됩니다.
     }
 
     public JoinDTO protectedJoin(JoinDTO joinDTO) {
+        if (userRepository.existsByUsername(joinDTO.getUsername())) {
+            joinDTO.setUsername("이미 존재하는 아이디 입니다.");
+            joinDTO.setPassword("회원가입을 다시 시도해주세요.");
+            return joinDTO;
+        }
+
         // SHA-256으로 비밀번호 암호화
         String encryptedPassword = encryptPassword(joinDTO.getPassword());
 

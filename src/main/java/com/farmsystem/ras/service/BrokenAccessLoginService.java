@@ -14,12 +14,12 @@ public class BrokenAccessLoginService {
 
     private final UserRepository userRepository;
 
-    // 잘못된 접근 제어에 취약한 로그인을 구현하면 됩니다.
+    // 잘못된 접근 제어에 취약한 로그인을 구현하면 됩니다. (role 사용O)
     public LoginResponse vulnerableBrokenAccessLogin(RoleLoginDTO roleLoginDTO) {
         return null;
     }
 
-    // 잘못된 접근 제어를 방어하는 로그인을 구현하면 됩니다.
+    // 잘못된 접근 제어를 방어하는 로그인을 구현하면 됩니다. (role 사용O)
     public LoginResponse protectedBrokenAccessLogin(RoleLoginDTO roleLoginDTO) {
         return null;
     }
