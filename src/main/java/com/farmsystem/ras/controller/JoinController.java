@@ -16,12 +16,12 @@ public class JoinController { // 신경쓰지 않아도 됩니다.
     private final JoinService joinService;
 
     @PostMapping("/join")
-    public void join(@RequestBody JoinDTO joinDTO) {
-        joinService.join(joinDTO);
+    public JoinDTO join(@RequestBody JoinDTO joinDTO) {
+        return joinService.join(joinDTO);
     }
 
     @PostMapping("/protected-join")
-    public void protectedJoin(@RequestBody JoinDTO joinDTO) {
-        joinService.protectedJoin(joinDTO);
+    public JoinDTO protectedJoin(@RequestBody JoinDTO joinDTO) {
+        return joinService.protectedJoin(joinDTO);
     }
 }

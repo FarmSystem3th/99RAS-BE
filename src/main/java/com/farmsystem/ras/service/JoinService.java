@@ -17,7 +17,7 @@ public class JoinService { // 신경쓰지 않아도 됩니다.
 
     private final UserRepository userRepository;
 
-    public void join(JoinDTO joinDTO) {
+    public JoinDTO join(JoinDTO joinDTO) {
         User user = User.builder()
                 .username(joinDTO.getUsername())
                 .password(joinDTO.getPassword())
@@ -26,9 +26,11 @@ public class JoinService { // 신경쓰지 않아도 됩니다.
                 .build();
 
         userRepository.save(user);
+
+        return joinDTO;
     }
 
-    public void protectedJoin(JoinDTO joinDTO) {
+    public JoinDTO protectedJoin(JoinDTO joinDTO) {
         // SHA-256으로 비밀번호 암호화
         String encryptedPassword = encryptPassword(joinDTO.getPassword());
 
@@ -40,6 +42,9 @@ public class JoinService { // 신경쓰지 않아도 됩니다.
                 .build();
 
         userRepository.save(user);
+
+        joinDTO.setPassword(encryptedPassword);
+        return joinDTO;
     }
 
     private String encryptPassword(String password) {
