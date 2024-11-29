@@ -17,7 +17,30 @@ public class BruteForceLoginService {
 
     // 무차별 공격에 취약한 로그인을 구현하면 됩니다. (role 사용X)
     public LoginResponse vulnerableBruteForceLogin(LoginDTO loginDTO) {
-        return null;
+        //로그인 정보 받기
+        LoginResponse response = new LoginResponse();
+        response.setUsername(loginDTO.getUsername());
+        response.setPassword(loginDTO.getPassword());
+
+        //유저 확인 (ID 확인)
+        User user = userRepository.findByUsername(loginDTO.getUsername());
+
+        // 사용자가 존재하지 않는 경우
+        if (user == null) {
+            response.setLoginStatus("LOGIN FAILED");
+            response.setVulnerablePoint("USER NOT FOUND");
+            return response;
+        }
+        // 비밀번호 일치 여부 확인
+        if (user.getPassword().equals(loginDTO.getPassword())) {
+            response.setLoginStatus("LOGIN SUCCESS");
+            response.setVulnerablePoint("BRUTE FORCE ATTACK");
+        } else {
+            response.setLoginStatus("LOGIN FAILED");
+            response.setVulnerablePoint("WRONG PASSWORD - NO LOCKING");
+            return response;
+        }
+        return response;
     }
 
     // 무차별 공격을 방어하는 로그인을 구현하면 됩니다. (role 사용X)
@@ -86,3 +109,5 @@ public class BruteForceLoginService {
         userRepository.save(user);
     }
 }
+
+
