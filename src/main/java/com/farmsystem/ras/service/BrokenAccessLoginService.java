@@ -86,7 +86,7 @@ public class BrokenAccessLoginService {
                         // Role 불일치
                         response.setUsername(roleLoginDTO.getUsername());
                         response.setPassword(roleLoginDTO.getPassword());
-                        response.setRole(roleLoginDTO.getRole());
+                        response.setRole(user.getRole());
                         response.setLoginStatus("LOGIN FAILED");
                         response.setVulnerablePoint("ROLE MISMATCH protected broken access control login");
                     }
