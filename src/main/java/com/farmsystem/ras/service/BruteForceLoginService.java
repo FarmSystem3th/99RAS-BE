@@ -103,11 +103,25 @@ public class BruteForceLoginService {
     }
 
     // 5회 이상 로그인 실패한 계정에 대해 로그인 시도 횟수 초기화
-    public void resetLoginAttemptCount(LoginDTO loginDTO) {
+    public LoginResponse resetLoginAttemptCount(LoginDTO loginDTO) {
+        LoginResponse response = new LoginResponse();
+        response.setUsername(loginDTO.getUsername());
+        response.setPassword(loginDTO.getPassword());
+
         User user = userRepository.findByUsername(loginDTO.getUsername());
+        if (user == null) {
+            response.setLoginStatus("FAILED");
+            response.setVulnerablePoint("USER NOT FOUND");
+            return response;
+        }
         user.setLacked(false);
         user.setLoginAttemptCount(0);
         userRepository.save(user);
+
+        response.setLoginStatus("SUCCESS");
+        response.setVulnerablePoint("INITIALIZE LOGIN");
+
+        return response;
     }
 }
 
