@@ -105,6 +105,7 @@ public class BruteForceLoginService {
     // 5회 이상 로그인 실패한 계정에 대해 로그인 시도 횟수 초기화
     public void resetLoginAttemptCount(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getUsername());
+        user.setLacked(false);
         user.setLoginAttemptCount(0);
         userRepository.save(user);
     }
