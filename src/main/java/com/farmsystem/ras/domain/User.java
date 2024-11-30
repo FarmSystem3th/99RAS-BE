@@ -34,5 +34,9 @@ public class User { // user DB 입니다.
     // 무차별 공격 로그인 방어용으로 만든 로그인 시도 count 입니다.
     // 필요하지 않으면 사용하지 않아도 됩니다.
     @Field("login_attempt_count")
-    private int loginAttemptCount;
+    private int loginAttemptCount = 0;
+
+    // 계정 잠금 여부 추가
+    @Field("is_lack")
+    private boolean lacked = false;
 }

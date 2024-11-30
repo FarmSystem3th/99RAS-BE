@@ -26,4 +26,9 @@ public class BruteForceLoginController { // 신경쓰지 않아도 됩니다.
         return bruteForceLoginService.protectedBruteForceLogin(loginDTO);
     }
 
+    @PostMapping("/reset-login-attempt-count")
+    public void resetLoginAttemptCount(@RequestBody LoginDTO loginDTO) {
+        bruteForceLoginService.resetLoginAttemptCount(loginDTO);
+    }
+
 }
